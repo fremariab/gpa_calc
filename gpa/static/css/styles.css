@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200&display=swap');
+
+*{
+    list-style: none;
+    font-family: 'Jost', sans-serif;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background: #7ddf96;
+    color: #505978;
+}
+
+ul li a{
+    display: block;
+    color: #505978;
+}
+
+
+.navbar{
+    width: 100%;
+    margin: 60px auto;
+    height: 80px;
+    background: #fff;
+    padding: 0 50px;
+    border-radius: 3px;
+}
+
+ul.menu{
+    display: flex;
+}
+
+.navbar ul.menu a{
+    margin: 0 10px;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition:all 0.2s ease;
+}
+
+.navbar .logo{
+    font-weight: 700;
+    font-size:  24px;
+    letter-spacing: 2px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.navbar .menu{
+    margin-left: 5px;
+    display: flex;
+}
+
+.navbar .menu a{
+    height: 100%;
+    padding: 20px 12px;
+}
+
+.navbar .menu a:hover,
+.navbar .menu a.active{
+    border-bottom: 3px solid #505978;
+}
+
+.content{
+    text-align: left;
+    color: black;
+    margin-left: 100px;
+}
+
+.content .form{
+    height: 100%;
+}
+
+.content .form p .box{
+    font-size: 50px;
+    height: 20px;
+    font-weight: bold;
+}
+
+
+.content .form button{
+    background-color: #505978;
+    border: none;
+    color: white;
+    text-decoration: solid;
+    font-size: 20px;
+    padding: 5px 16px;
+    text-align: center;
+    display: flex;
+    border-radius: 5px;
+}
+

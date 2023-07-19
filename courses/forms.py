@@ -1,8 +1,11 @@
-from courses.models import Course, Major,Assignment
+from courses.models import Course, Major, Assignment
 from django import forms
 
 
 class AddCourseForm(forms.ModelForm):
+    course_id = forms.CharField(initial="Course ID")
+    course_name = forms.CharField(initial="Course Name")
+
     class Meta:
         model = Course
         fields = [
@@ -19,7 +22,8 @@ class AddMajorForm(forms.ModelForm):
         model = Major
         fields = ["name", "total_credits"]
 
+
 class AddAssignmentForm(forms.ModelForm):
     class Meta:
         model = Assignment
-        fields=('name', 'grade_given')
+        fields = ("name", "grade_given")

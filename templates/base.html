@@ -1,7 +1,42 @@
-<h1>
-    add course
-</h1>
-<form method="post">
-{% csrf_token %}
-{{form.as_p}}
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% load static %}
+<link rel="icon" href="{% static 'img/icons8-ico-16.png' %}"    type="image/x-icon"    />
+{% block title %}
+<title>My GPA Calculator</title>
+{% endblock title %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
+<body>
+    {% block wrapper %}
+    <div class="wrapper">
+    {% block navbar %}
+    <div class="navbar">
+        <div class="logo">
+        {% load static %}
+        <img src="{% static 'img/icons8-ico-16.png' %}" alt="" />
+        My GPA Calculator
+        </div>
+        <ul class="menu">
+        <li><a href="{% url 'add-course' %}">Add Course</a></li>
+        <li><a href="{% url 'add-major' %}">Add Major</a></li>
+        <li>
+            <a href="{% url 'add-evaluation-criteria' %}">Add Evaluation Criteria</a>
+        </li>
+        <li><a href="{% url 'add-assignment' %}">Add Assignment</a></li>
+        </ul>
+    </div>
+    {% endblock %}
+    </div>
+    {% endblock %} 
+    {% block content %} {% endblock content %}
+
+    <footer>
+<a target="_blank" href="https://icons8.com/icon/H62aEUw6l0DS/ico">ICO</a>
+icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+</footer>
+</body>
+</html>
