@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.urls import reverse
 
 from evaluation_criteria.models import EvaluationCriteria
 
@@ -18,7 +19,7 @@ class Major(models.Model):
 
     name = models.CharField(max_length=30, choices=MajorName.choices, default=MajorName.GN)
     total_credits = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(34)]
+        validators=[MinValueValidator(0), MaxValueValidator(35)]
     )
 
 
@@ -35,3 +36,11 @@ class Course(models.Model):
         choices=Credits.choices, default=Credits.FULL, max_length=4
     )
     associated_majors = models.ForeignKey(Major, on_delete=models.SET_NULL,null=True)
+
+class Assignment(models.Model):
+   name = models.CharField(max_length=40, help_text='Enter name of assignment')
+   grade_given=models.IntegerField(help_text='Enter grade given for the assignment')
+   total_grade= models.IntegerField(help_text='Enter the total grade for the assignment')
+
+   def __str__(self):
+       return self.field
