@@ -16,9 +16,11 @@
     {% block navbar %}
     <div class="navbar">
         <div class="logo">
+        <a href="{% url 'index' %}">
         {% load static %}
         <img src="{% static 'img/icons8-ico-16.png' %}" alt="" />
-        My GPA Calculator
+            My GPA Calculator
+        </a>
         </div>
         <ul class="menu">
         <li><a href="{% url 'add-course' %}">Add Course</a></li>
@@ -34,9 +36,7 @@
     {% endblock %} 
     {% block content %} {% endblock content %}
 
-    <footer>
-<a target="_blank" href="https://icons8.com/icon/H62aEUw6l0DS/ico">ICO</a>
-icon by <a target="_blank" href="https://icons8.com">Icons8</a>
-</footer>
+
 </body>
+
 </html>

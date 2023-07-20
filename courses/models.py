@@ -17,30 +17,72 @@ class Major(models.Model):
         ME = "ME", "Mechanical Engineering"
         GN = "GN", "General"
 
-    name = models.CharField(max_length=30, choices=MajorName.choices, default=MajorName.GN)
-    total_credits = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(35)]
+    name = models.CharField(
+        max_length=30,
+        choices=MajorName.choices,
+        default=MajorName.GN,
+        verbose_name="Major Name",
+    )
+    total_credits = models.DecimalField(
+        validators=[MinValueValidator(0), MaxValueValidator(35)],
+        verbose_name="Total Credits",
+        max_digits=3,
+        decimal_places=1,
+        null=True,
     )
 
 
 class Course(models.Model):
-    course_id = models.CharField(primary_key=True, max_length=8)
-    course_name = models.CharField(max_length=40)
+    course_id = models.CharField(
+        primary_key=True, max_length=8, verbose_name="Course ID"
+    )
+    course_name = models.CharField(max_length=40, verbose_name="Course Name")
 
     class Credits(models.IntegerChoices):
         FULL = 1, "Full"
         HALF = 0.5, "Half"
 
-    evaluation_criteria = models.ForeignKey(EvaluationCriteria, on_delete=models.SET_NULL,null=True)
-    credits_worth = models.CharField(
-        choices=Credits.choices, default=Credits.FULL, max_length=4
+    evaluation_criteria = models.ForeignKey(
+        EvaluationCriteria,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name="Evaluation Criteria",
     )
-    associated_majors = models.ForeignKey(Major, on_delete=models.SET_NULL,null=True)
+    credits_worth = models.CharField(
+        choices=Credits.choices,
+        default=Credits.FULL,
+        max_length=4,
+        verbose_name="Credits Worth",
+    )
+    associated_majors = models.ForeignKey(
+        Major, on_delete=models.SET_NULL, null=True, verbose_name="Associated Majors"
+    )
+    letter_grade = models.CharField(
+        verbose_name="Letter Grade", max_length=2, null=True
+    )
+    final_grade = models.DecimalField(
+        verbose_name="Final Grade", max_digits=5, decimal_places=5, null=True
+    )
+
 
 class Assignment(models.Model):
-   name = models.CharField(max_length=40, help_text='Enter name of assignment')
-   grade_given=models.IntegerField(help_text='Enter grade given for the assignment')
-   total_grade= models.IntegerField(help_text='Enter the total grade for the assignment')
+    name = models.CharField(
+        max_length=40,
+        help_text="Enter name of assignment",
+        verbose_name="Assignment Name",
+    )
+    grade_given = models.DecimalField(
+        help_text="Enter grade given for the assignment",
+        verbose_name="Grade Given",
+        max_digits=5,
+        decimal_places=5,
+    )
+    total_grade = models.DecimalField(
+        help_text="Enter the total grade for the assignment",
+        verbose_name="Total Grade",
+        max_digits=5,
+        decimal_places=5,
+    )
 
-   def __str__(self):
-       return self.field
+    def __str__(self):
+        return self.field

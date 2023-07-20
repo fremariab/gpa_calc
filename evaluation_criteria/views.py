@@ -14,4 +14,4 @@ def add_evaluation_criteria(request):
 
     else:
         form = AddEvaluationCriteriaForm()
-    return render(request, "add_course.html", {"form": form})
+    return render(request, "add_evaluationcriteria.html", {"form": form})

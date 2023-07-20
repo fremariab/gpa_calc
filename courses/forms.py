@@ -3,9 +3,6 @@ from django import forms
 
 
 class AddCourseForm(forms.ModelForm):
-    course_id = forms.CharField(initial="Course ID")
-    course_name = forms.CharField(initial="Course Name")
-
     class Meta:
         model = Course
         fields = [

@@ -73,18 +73,51 @@ ul.menu{
 }
 
 .content{
-    text-align: left;
-    color: black;
-    margin-left: 100px;
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    padding: 60px 45px;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%,30%);
+    border-radius: 20px;
+    bottom: 20px;
 }
 
-.content .form{
+.content h1{
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 26px;
+    font-style: bold;
+    color: #3aaf9f;
+}
+
+.content .form {
+    width:100%;
     height: 100%;
 }
 
-.content .form p .box{
-    font-size: 50px;
-    height: 20px;
+.content .form .input_field input {
+    width: 100%;
+    padding: 12px;
+    padding-left: 15px;
+    border: none;
+    background: #eeeeee;
+    color: black;
+    font-weight: bold;
+}
+
+.content .form .input_field{
+    position: relative;
+    margin-bottom: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.content .form .label_tag{
+    color: black;
     font-weight: bold;
 }
 
@@ -100,4 +133,5 @@ ul.menu{
     display: flex;
     border-radius: 5px;
 }
+
 
