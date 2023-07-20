@@ -11,3 +11,6 @@ class EvaluationCriteria(models.Model):
         max_digits=5,
         decimal_places=5,
     )
+
+    def __str__(self) -> str:
+        return f"{self.name}"

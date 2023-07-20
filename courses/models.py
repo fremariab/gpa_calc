@@ -31,6 +31,9 @@ class Major(models.Model):
         null=True,
     )
 
+    def __str__(self) -> str:
+        return f"{self.name}"
+
 
 class Course(models.Model):
     course_id = models.CharField(
@@ -63,6 +66,14 @@ class Course(models.Model):
     final_grade = models.DecimalField(
         verbose_name="Final Grade", max_digits=5, decimal_places=5, null=True
     )
+    course_gpa = models.DecimalField(
+        verbose_name="Course GPA",
+        max_digits=3,
+        decimal_places=2,
+    )
+
+    def __str__(self) -> str:
+        return f"{self.course_name}"
 
 
 class Assignment(models.Model):
