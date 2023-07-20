@@ -1,43 +1,43 @@
 from django.shortcuts import render, redirect
-from courses.forms import AddCourseForm, AddMajorForm, AddAssignmentForm
+from courses.forms import CreateAssignmentForm, CreateCourseForm, CreateMajorForm
 
 # Create your views here.
 
 
-def add_course(request):
+def create_course(request):
     if request.method == "POST":
-        form = AddCourseForm(request.POST)
+        form = CreateCourseForm(request.POST)
 
         if form.is_valid():
             form.save()
             return redirect("index")
 
     else:
-        form = AddCourseForm()
-    return render(request, "add_course.html", {"form": form})
+        form = CreateCourseForm()
+    return render(request, "create_course.html", {"form": form})
 
 
-def add_major(request):
+def create_major(request):
     if request.method == "POST":
-        form = AddMajorForm(request.POST)
+        form = CreateMajorForm(request.POST)
 
         if form.is_valid():
             form.save()
             return redirect("index")
 
     else:
-        form = AddMajorForm()
+        form = CreateMajorForm()
     return render(request, "add_major.html", {"form": form})
 
 
-def add_assignment(request):
+def create_assignment(request):
     if request.method == "POST":
-        form = AddAssignmentForm(request.POST)
+        form = CreateAssignmentForm(request.POST)
 
         if form.is_valid():
             form.save()
             return redirect("index")
 
     else:
-        form = AddAssignmentForm()
-    return render(request, "add_assignment.html", {"form": form})
+        form = CreateAssignmentForm()
+    return render(request, "create_assignment.html", {"form": form})

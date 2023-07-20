@@ -1,8 +1,8 @@
 from django.urls import path
-from courses.views import add_course, add_major,add_assignment
+from courses.views import create_assignment, create_course, create_major
 
 urlpatterns = [
-    path("add_course/", add_course, name="add-course"),
-    path("add_major/", add_major, name="add-major"),
-    path("add_assignment/", add_assignment, name="add-assignment"),
+    path("create_course/", create_course, name="create-course"),
+    path("create_major/", create_major, name="create-major"),
+    path("create_assignment/", create_assignment, name="create-assignment"),
 ]

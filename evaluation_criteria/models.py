@@ -12,5 +12,5 @@ class EvaluationCriteria(models.Model):
         decimal_places=5,
     )
 
-    def __str__(self) -> str:
-        return f"{self.name}"
+    def __str__(self):
+        return self.field

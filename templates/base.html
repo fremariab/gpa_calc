@@ -23,12 +23,22 @@
         </a>
         </div>
         <ul class="menu">
-        <li><a href="{% url 'add-course' %}">Add Course</a></li>
-        <li><a href="{% url 'add-major' %}">Add Major</a></li>
-        <li>
-            <a href="{% url 'add-evaluation-criteria' %}">Add Evaluation Criteria</a>
-        </li>
-        <li><a href="{% url 'add-assignment' %}">Add Assignment</a></li>
+            {% if user.is_staff %}
+                <li><a href="{% url 'add-course' %}">Add Course</a></li>
+                <li><a href="{% url 'add-major' %}">Add Major</a></li>
+                <li>
+                    <a href="{% url 'add-evaluation-criteria' %}">Add Evaluation Criteria</a>
+                </li>
+                <li><a href="{% url 'add-assignment' %}">Add Assignment</a></li>
+            {% else %}
+                <li><a href="{% url 'course_list' %}">All Courses</a></li>
+                {% comment %} <li><a href="{% url 'add-major' %}">Add Major</a></li>
+                <li>
+                    <a href="{% url 'add-evaluation-criteria' %}">Add Evaluation Criteria</a>
+                </li>
+                <li><a href="{% url 'add-assignment' %}">Add Assignment</a></li> {% endcomment %}
+            {% endif %}
+            
         </ul>
     </div>
     {% endblock %}

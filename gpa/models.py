@@ -20,12 +20,10 @@ class Semester(models.Model):
         yearfour_semesterrwo = "Y4S2", "Year 4 Semester 2"
 
     academic_term = models.CharField(
-        max_length="5", verbose_name="Academic Term", choices=AcademicTerms.choices
+        max_length=5, verbose_name="Academic Term", choices=AcademicTerms.choices
     )
     semester_gpa = models.DecimalField(
-        verbose_name="Semester GPA",
-        max_digits=3,
-        decimal_places=2,
+        verbose_name="Semester GPA", max_digits=3, decimal_places=2, null=True
     )
 
     def __str__(self):
