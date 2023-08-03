@@ -2,7 +2,6 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
 from django.contrib.auth.models import User
-from evaluation_criteria.models import EvaluationCriteria
 
 # Create your models here.
 
@@ -32,6 +31,21 @@ class Major(models.Model):
 
     def __str__(self):
         return self.get_name_display()
+
+
+class EvaluationCriteria(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Evaluation Criteria Name")
+    weighting = models.DecimalField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        verbose_name="Weighting",
+        max_digits=5,
+        decimal_places=5,
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.name
 
 
 class Course(models.Model):

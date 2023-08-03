@@ -1,4 +1,4 @@
-from courses.models import Course, Major, Assignment
+from courses.models import Course, Major, Assignment, EvaluationCriteria
 from django import forms
 
 
@@ -11,6 +11,23 @@ class CreateCourseForm(forms.ModelForm):
             "credits_worth",
             "associated_majors",
         ]
+
+
+class CreateEvaluationCriteriaForm(forms.ModelForm):
+    class Meta:
+        model = EvaluationCriteria
+        fields = ("name",)
+
+
+class AddEvaluationCriteriaForm(forms.ModelForm):
+    # Metadata
+    evaluation_criteria = forms.ModelMultipleChoiceField(
+        queryset=EvaluationCriteria.objects.all()
+    )
+
+    class Meta:
+        model = EvaluationCriteria
+        fields = ("evaluation_criteria", "weighting")
 
 
 class CreateMajorForm(forms.ModelForm):

@@ -25,5 +25,4 @@ urlpatterns = [
     path("", include("courses.urls")),
     path("", include("gpa.urls")),
     path("", include("authentication.urls")),
-    path("", include("evaluation_criteria.urls")),
 ]

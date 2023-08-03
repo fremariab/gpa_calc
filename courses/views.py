@@ -4,9 +4,11 @@ from courses.forms import (
     CreateCourseForm,
     CreateMajorForm,
     AddCourseForm,
+    CreateEvaluationCriteriaForm,
+    AddEvaluationCriteriaForm,
 )
 from django.views.generic import ListView
-from courses.models import Course, Assignment, Major
+from courses.models import Course, Assignment, Major, EvaluationCriteria
 from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
@@ -38,6 +40,20 @@ def create_major(request):
     else:
         form = CreateMajorForm()
     return render(request, "admin/create_major.html", {"form": form})
+
+
+@login_required
+def create_evaluation_criteria(request):
+    if request.method == "POST":
+        form = CreateEvaluationCriteriaForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+
+    else:
+        form = CreateEvaluationCriteriaForm()
+    return render(request, "admin/create_evaluationcriteria.html", {"form": form})
 
 
 @login_required

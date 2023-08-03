@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "courses",
     "gpa",
-    "evaluation_criteria",
     "rest_framework",
     "django_extensions",
     "authentication",

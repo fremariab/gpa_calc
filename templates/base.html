@@ -16,58 +16,49 @@
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     </head>
-    <body>
-        {% block wrapper %}
-            <div class="wrapper">
-                {% block navbar %}
-                    <div class="navbar">
-                        <div class="logo">
-                            <a href="{% url 'index' %}">
-                                {% load static %}
+  
 
-                                <img src="{% static 'img/icons8-ico-16.png' %}" alt="" />
+<body>
+    {% block wrapper %}
+        <div class="wrapper">
+            {% block navbar %}
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="{% url 'index' %}">
+                            My GPA
+                        </a>
+                    </div>
+                    <ul class="menu">
 
-                                My GPA 
-                            </a>
+                        {% if user.is_staff %}
+                        <li><a href="{% url 'create-major' %}">Create Major</a></li>
+                        <li><a href="{% url 'create-course' %}">Create Course</a></li>
+                        <li><a href="{% url 'create-evaluation-criteria' %}">Create Evaluation Criteria</a></li>
+                    {% else %}
+                        <li><a href="{% url 'create-assignment' %}">Add Assignment</a></li>
+                        <li><a href="{% url 'view-courses' %}">My Courses</a></li>
+                        <li><a href="{% url 'add-course' %}">Add Course</a></li>
+
+                    {% endif %}                    </ul>
+                    {% if not user.is_authenticated %}
+                        <div class="navbar_right">
+                            <ul>
+                                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                                <li><a href="{% url 'login' %}">Log In</a></li>
+                            </ul>
                         </div>
-                        <ul class="menu">
-                            
-                            {% if user.is_staff %}
-                                <li><a href="{% url 'create-major' %}">Create Major</a></li>
-                                <li><a href="{% url 'create-course' %}">Create Course</a></li>
-                                <li><a href="{% url 'create-evaluation-criteria' %}">Create Evaluation Criteria</a></li>
-                            {% else %}
-                                <li><a href="{% url 'create-assignment' %}">Add Assignment</a></li>
-                                <li><a href="{% url 'view-courses' %}">My Courses</a></li>
-                                <li><a href="{% url 'add-course' %}">Add Course</a></li>
-
-                            {% endif %}
-                                
-                                
-                                
-                                
-                        </ul>
-                        {% if not user.is_authenticated %}
-                            <div class="navbar_right">
-                                <ul>
-                                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                                    <li><a href="{% url 'login' %}">Log In</a></li>
-                                </ul>
-                            </div>
-                        {% else %}
+                    {% else %}
                         <div class="navbar_right">
                             <ul>
                                 <li><a href="{% url 'logout' %}">Log Out</a></li>
                             </ul>
                         </div>
-                        {% endif %}
-                    </div>
-                {% endblock %}
-            </div>
-        {% endblock %} 
-        {% block content %} {% endblock content %}
+                    {% endif %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
 
-
-    </body>
-
+    {% block content %} {% endblock content %}
+</body>
 </html>
