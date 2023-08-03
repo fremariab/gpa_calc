@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
-
+from django.contrib.auth.models import User
 from evaluation_criteria.models import EvaluationCriteria
 
 # Create your models here.
@@ -15,12 +15,11 @@ class Major(models.Model):
         EE = "EE", "Electrical Engineering"
         MIS = "MIS", "Management Information Systems"
         ME = "ME", "Mechanical Engineering"
-        GN = "GN", "General"
 
     name = models.CharField(
         max_length=30,
         choices=MajorName.choices,
-        default=MajorName.GN,
+        default=MajorName.BA,
         verbose_name="Major Name",
     )
     total_credits = models.DecimalField(
@@ -32,14 +31,14 @@ class Major(models.Model):
     )
 
     def __str__(self):
-        return self.field
+        return self.get_name_display()
 
 
 class Course(models.Model):
     course_id = models.CharField(
-        primary_key=True, max_length=8, verbose_name="Course ID"
+        primary_key=True, max_length=10, verbose_name="Course ID"
     )
-    course_name = models.CharField(max_length=40, verbose_name="Course Name")
+    course_name = models.CharField(max_length=200, verbose_name="Course Name")
 
     class Credits(models.IntegerChoices):
         FULL = 1, "Full"
@@ -51,15 +50,12 @@ class Course(models.Model):
         null=True,
         verbose_name="Evaluation Criteria",
     )
-    credits_worth = models.CharField(
+    credits_worth = models.IntegerField(
         choices=Credits.choices,
         default=Credits.FULL,
-        max_length=4,
         verbose_name="Credits Worth",
     )
-    associated_majors = models.ForeignKey(
-        Major, on_delete=models.SET_NULL, null=True, verbose_name="Associated Majors"
-    )
+    associated_majors = models.ManyToManyField(Major, verbose_name="Associated Majors")
     letter_grade = models.CharField(
         verbose_name="Letter Grade", max_length=2, null=True
     )
@@ -69,9 +65,12 @@ class Course(models.Model):
     course_gpa = models.DecimalField(
         verbose_name="Course GPA", max_digits=3, decimal_places=2, null=True
     )
+    student = models.ManyToManyField(
+        User,
+    )
 
     def __str__(self):
-        return self.field
+        return self.course_name
 
 
 class Assignment(models.Model):
@@ -94,4 +93,4 @@ class Assignment(models.Model):
     )
 
     def __str__(self):
-        return self.field
+        return self.name

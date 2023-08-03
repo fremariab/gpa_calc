@@ -5,4 +5,4 @@ from django import forms
 class CreateEvaluationCriteriaForm(forms.ModelForm):
     class Meta:
         model = EvaluationCriteria
-        fields = ["name"]
+        fields = ("name",)

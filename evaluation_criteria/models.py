@@ -10,7 +10,9 @@ class EvaluationCriteria(models.Model):
         verbose_name="Weighting",
         max_digits=5,
         decimal_places=5,
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
-        return self.field
+        return self.name

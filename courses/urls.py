@@ -1,8 +1,10 @@
 from django.urls import path
-from courses.views import create_assignment, create_course, create_major
+from courses import views
 
 urlpatterns = [
-    path("create_course/", create_course, name="create-course"),
-    path("create_major/", create_major, name="create-major"),
-    path("create_assignment/", create_assignment, name="create-assignment"),
+    path("create_course/", views.create_course, name="create-course"),
+    path("create_major/", views.create_major, name="create-major"),
+    path("create_assignment/", views.create_assignment, name="create-assignment"),
+    path("all_courses/", views.course_list, name="view-courses"),
+    path("add_course/", views.add_course, name="add-course"),
 ]

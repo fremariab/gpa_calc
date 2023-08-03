@@ -8,6 +8,11 @@
         <div class="form">
             <form method="post">
                 {% csrf_token %} 
+                
+                {% if form.errors %}
+                    {{form.errors}}
+                {% endif %}
+                    
                 {% for field in form %}
                     <div class="label tag">
                         <b>
@@ -19,6 +24,7 @@
                     </div>
                     <br/>
                 {% endfor %}
+                <!-- {{form.as_p}} -->
                 <div class="btn">
                     <button type="submit">
                         Create

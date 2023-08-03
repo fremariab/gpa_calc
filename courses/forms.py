@@ -8,7 +8,6 @@ class CreateCourseForm(forms.ModelForm):
         fields = [
             "course_id",
             "course_name",
-            "evaluation_criteria",
             "credits_worth",
             "associated_majors",
         ]
@@ -24,3 +23,12 @@ class CreateAssignmentForm(forms.ModelForm):
     class Meta:
         model = Assignment
         fields = ("name", "grade_given")
+
+
+class AddCourseForm(forms.ModelForm):
+    # Metadata
+    course_name = forms.ModelChoiceField(queryset=Course.objects.all())
+
+    class Meta:
+        model = Course
+        fields = ("course_name",)

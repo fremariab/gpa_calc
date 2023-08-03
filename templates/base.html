@@ -1,52 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-{% load static %}
-<link rel="icon" href="{% static 'img/icons8-ico-16.png' %}"    type="image/x-icon"    />
-{% block title %}
-<title>My GPA Calculator</title>
-{% endblock title %} {% load static %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-</head>
-<body>
-    {% block wrapper %}
-    <div class="wrapper">
-    {% block navbar %}
-    <div class="navbar">
-        <div class="logo">
-        <a href="{% url 'index' %}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         {% load static %}
-        <img src="{% static 'img/icons8-ico-16.png' %}" alt="" />
-            My GPA Calculator
-        </a>
-        </div>
-        <ul class="menu">
-            {% if user.is_staff %}
-                <li><a href="{% url 'add-course' %}">Add Course</a></li>
-                <li><a href="{% url 'add-major' %}">Add Major</a></li>
-                <li>
-                    <a href="{% url 'add-evaluation-criteria' %}">Add Evaluation Criteria</a>
-                </li>
-                <li><a href="{% url 'add-assignment' %}">Add Assignment</a></li>
-            {% else %}
-                <li><a href="{% url 'course_list' %}">All Courses</a></li>
-                {% comment %} <li><a href="{% url 'add-major' %}">Add Major</a></li>
-                <li>
-                    <a href="{% url 'add-evaluation-criteria' %}">Add Evaluation Criteria</a>
-                </li>
-                <li><a href="{% url 'add-assignment' %}">Add Assignment</a></li> {% endcomment %}
-            {% endif %}
-            
-        </ul>
-    </div>
-    {% endblock %}
-    </div>
-    {% endblock %} 
-    {% block content %} {% endblock content %}
+        <link rel="icon" href="{% static 'img/icons8-ico-16.png' %}"    type="image/x-icon"    />
+
+        {% block title %}
+            <title>
+                My GPA Calculator
+            </title>
+        {% endblock title %} 
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    </head>
+    <body>
+        {% block wrapper %}
+            <div class="wrapper">
+                {% block navbar %}
+                    <div class="navbar">
+                        <div class="logo">
+                            <a href="{% url 'index' %}">
+                                {% load static %}
+
+                                <img src="{% static 'img/icons8-ico-16.png' %}" alt="" />
+
+                                My GPA 
+                            </a>
+                        </div>
+                        <ul class="menu">
+                            
+                            {% if user.is_staff %}
+                                <li><a href="{% url 'create-major' %}">Create Major</a></li>
+                                <li><a href="{% url 'create-course' %}">Create Course</a></li>
+                                <li><a href="{% url 'create-evaluation-criteria' %}">Create Evaluation Criteria</a></li>
+                            {% else %}
+                                <li><a href="{% url 'create-assignment' %}">Add Assignment</a></li>
+                                <li><a href="{% url 'view-courses' %}">My Courses</a></li>
+                                <li><a href="{% url 'add-course' %}">Add Course</a></li>
+
+                            {% endif %}
+                                
+                                
+                                
+                                
+                        </ul>
+                        {% if not user.is_authenticated %}
+                            <div class="navbar_right">
+                                <ul>
+                                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                                    <li><a href="{% url 'login' %}">Log In</a></li>
+                                </ul>
+                            </div>
+                        {% else %}
+                        <div class="navbar_right">
+                            <ul>
+                                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %} 
+        {% block content %} {% endblock content %}
 
 
-</body>
+    </body>
 
 </html>

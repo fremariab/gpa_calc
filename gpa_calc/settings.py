@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "evaluation_criteria",
     "rest_framework",
     "django_extensions",
+    "authentication",
 ]
 
 MIDDLEWARE = [
@@ -116,6 +117,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = "/homepage"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
